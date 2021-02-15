@@ -7,7 +7,8 @@ class highlight extends StatelessWidget{
     return new Column(
       children: [
         Text("Hello1"),
-        Text("Hello2")
+        Text("Hello2"),
+        Text("hello3"),
       ],
     );
   }
