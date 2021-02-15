@@ -22,7 +22,6 @@ class HtmlFormatter {
     input =input.replaceAll("code","");
 
     input =input.replaceAll("< class=\"\">" ,"");
-    //input =input.replaceAll(">" ,"");
 
 
     input = replaceWithHtmlTags(input, "col", "<td>", "</td>");

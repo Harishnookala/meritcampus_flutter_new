@@ -42,7 +42,7 @@ class Api {
     String data = await DefaultAssetBundle.of(context).loadString("Images/easy_sessions.json");
     final jsonResult = json.decode(data) as List;
     List<EasySession> imagesList =
-    jsonResult.map((i) => EasySession.fromJson(i)).toList().sublist(8,19);
+    jsonResult.map((i) => EasySession.fromJson(i)).toList().sublist(0,9);
     return imagesList;
   }
 

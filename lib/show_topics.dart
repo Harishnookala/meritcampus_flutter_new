@@ -46,6 +46,7 @@ class TopicWidgetState extends State<TopicWidget> {
           if (snap.hasData) {
             Session(load_topic: snap.data);
             topics = snap.data;
+            print(topics.title);
             return showTopic(snap.data);
           } else if (snap.hasError) {
             return Text("hide");
@@ -130,7 +131,7 @@ class TopicWidgetState extends State<TopicWidget> {
           String table_convert = HtmlFormatter.format(split);
           children.add(Container(child: scroll_table(table_convert)));
         } else {
-          String s = split.replaceAll(
+          String table = split.replaceAll(
               RegExp(
                 r'[0-9]',
               ),
@@ -143,23 +144,18 @@ class TopicWidgetState extends State<TopicWidget> {
               child: Container(
                 width: count <= 3 ? 400 : 900,
                 child: Html(
-                  data: s,
+                  data: table,
                   style: {
                     "tr": Style(
                       border: Border.all(color: Colors.blueAccent, width: 1.2),
                       padding: EdgeInsets.all(20.4),
-                      // height: 78
-                      //height:40.6
+
                     ),
                     "td": Style(
                         // textDecorationThickness: 2.3,
                         height: MediaQuery.of(context).size.height,
                         padding: EdgeInsets.all(12.3),
-                        border: Border(
-                            right: BorderSide(
-                                color: Colors.blueAccent, width: 0.10),
-                            left: BorderSide(
-                                color: Colors.blueAccent, width: 1.5))),
+                        border: Border.all(color: Colors.blue)),
                     "a": Style(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
