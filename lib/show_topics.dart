@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
+import 'package:meritcampus_flutter_new/class_Models/WorkEntry.dart';
 import 'package:meritcampus_flutter_new/sessions.dart';
 import 'Basic_java_program.dart';
 import 'wrappers.dart';
@@ -15,13 +16,13 @@ import 'package:responsive_widgets/responsive_widgets.dart';
 class TopicWidget extends StatefulWidget {
   final int topicId;
   bool is_value;
-  String title;
-  TopicWidget({this.topicId, this.is_value, this.title});
+  String entry_type;
+  TopicWidget({this.topicId, this.is_value, this.entry_type});
 
   @override
   TopicWidgetState createState() {
     return TopicWidgetState(
-        topicId: this.topicId, is_value: is_value, title: this.title);
+        topicId: this.topicId, is_value: is_value, entry_type: this.entry_type);
   }
 }
 
@@ -32,38 +33,45 @@ class TopicWidgetState extends State<TopicWidget> {
   int id;
   bool is_value;
   Topic load_data;
-  String title;
+  String entry_type;
 
   Topic topics;
-  TopicWidgetState({this.topicId, this.is_value, this.title});
+  TopicWidgetState({this.topicId, this.is_value, this.entry_type});
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Topic>(
+    WorkEntry entry = new WorkEntry();
+    entry =  createTopic(topicId);
+    print(entry);
+    return entry.entryType == "TOPIC" ? FutureBuilder<Topic>(
         future: Api.loadTopic(topicId),
         builder: (BuildContext context, snap) {
 
           if (snap.hasData) {
             Session(load_topic: snap.data);
             topics = snap.data;
-            print(topics.title);
+            print(entry_type);
             return showTopic(snap.data);
           } else if (snap.hasError) {
             return Text("hide");
           }
-          return Center(child: CircularProgressIndicator());
-        });
+          return MCBlueHeading(heading: "Loading Awesome");
+        }):Container();
   }
 
   showTopic(Topic topic) {
+    var controller = ScrollController();
+
     List col = [];
     List row = [];
     String f;
     String test;
     List<Widget> children = [];
     children.add(MCBlueHeading(heading: topic.title));
+
     List definiton_splits =
         HtmlFormatter.split(HtmlFormatter.format(topic.definition));
+
     for (int i = 0; i < definiton_splits.length; i++) {
       String definition = definiton_splits[i];
       if (definition.startsWith(HtmlFormatter.open("cl"))) {
@@ -86,8 +94,8 @@ class TopicWidgetState extends State<TopicWidget> {
                   data: definition,
                   style: {
                     "Html": Style(
-                        //margin: EdgeInsets.only(left: 6.3)
-                        )
+                      fontSize: FontSize.large
+                    )
                   },
                 ))
           ],
@@ -132,10 +140,7 @@ class TopicWidgetState extends State<TopicWidget> {
           children.add(Container(child: scroll_table(table_convert)));
         } else {
           String table = split.replaceAll(
-              RegExp(
-                r'[0-9]',
-              ),
-              '');
+              RegExp(r'[0-9]',), '');
           List get_head = get_table(split);
           int count = get_head[0].length - 1;
           children.add(Container(
@@ -178,12 +183,16 @@ class TopicWidgetState extends State<TopicWidget> {
         children.add(
           Container(
               alignment: Alignment.topLeft,
-              child: FractionallySizedBox(child: Html(data: split))),
+              child: FractionallySizedBox(child: Html(data: split,style: {
+                "Html":Style(
+                  fontSize: FontSize.large
+                )
+              },))),
         );
       }
     }
 
-    return Column(children: children);
+    return ListView(children: children,controller: controller,shrinkWrap: true,);
   }
 
   normal_table(List value) {
@@ -449,4 +458,13 @@ class TopicWidgetState extends State<TopicWidget> {
 
     return tableHeaderNameCount;
   }
-}
+
+   static WorkEntry createTopic(int topicId) {
+
+    WorkEntry entry = new WorkEntry();
+     entry.setTitle("Loading awesome");
+     entry.setEntryId(topicId);
+    entry.setEntryType("TOPIC");
+
+    return entry;
+  }}

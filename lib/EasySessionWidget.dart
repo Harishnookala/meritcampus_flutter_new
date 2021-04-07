@@ -1,58 +1,68 @@
-
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:meritcampus_flutter_new/wrappers.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'class_Models/EasySession.dart';
 import 'show_topics.dart';
 import 'QuestionWidget.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EasySessionWidget extends StatelessWidget {
-  List<EasySession>session;
+  List<EasySession> session;
   EasySession easySession;
   String question_type;
   int id;
   int marks;
   String title;
-  bool is_value  = false;
+  bool is_value = false;
   final customfunction;
   int questionable_id;
-  EasySessionWidget({this.easySession,this.customfunction,this.title,this.session});
+  EasySessionWidget({this.easySession, this.customfunction, this.session});
   @override
   Widget build(BuildContext context) {
-    var topic_id = easySession.topic_ids.split(",").map((i) => int.parse(i.trim())).toList();
-    return Column(
-        children: [
-          AmberHeading(heading: "Session" + easySession.session_identifier,),
-          Container(
-            child: Column(
-              children: [
-                ListView.builder(
-                    shrinkWrap: true,
-                    physics: ScrollPhysics(),
-                    itemCount: topic_id.length,
-                    itemBuilder: (context,index){
-                      return new Column(
-                        children: [
-                          if(easySession.topic_ids.isNotEmpty)
-                            TopicWidget(topicId: topic_id[index],is_value: is_value,title: title,)
-                        ],
-                      );
-                    }
-                )
+    final ItemScrollController itemScrollController = ItemScrollController();
 
-              ],
-            ),
-          ),
-         if(easySession.quiz_questions!=null)
-            Column(
-              children: Question_widget(easySession),
-            )
-        ]);
+    var topic_id = easySession.topic_ids
+        .split(",")
+        .map((i) => int.parse(i.trim()))
+        .toList();
+    var controller = ScrollController();
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Container(
+           child: ListView.builder(
+              physics: ScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              itemCount: topic_id.length,
+              controller: controller,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+               // print(ScreenUtil.screenHeight);
+                return new Column(
+                  children: [
+                    (index == 0)
+                        ? AmberHeading(heading: "Session" + easySession.session_identifier,)
+                        : Container(),
+                    if (easySession.topic_ids.isNotEmpty)
+                      TopicWidget(
+                        topicId: topic_id[index],
+                        is_value: is_value,
+                      )
+                    else if (easySession.quiz_questions != null)
+                      Column(
+                        children: Question_widget(easySession),
+                      )
+                  ],
+                );
+              }),
+         ),   
+    ]);
   }
-
 
   List<Widget> Question_widget(EasySession easySession) {
     List<Widget> QuestionType = [];
-    QuestionType.add(ListView.builder(//main listview
+    QuestionType.add(ListView.builder(
+        //main listview
         shrinkWrap: true,
         physics: ScrollPhysics(),
         scrollDirection: Axis.vertical,
@@ -69,13 +79,18 @@ class EasySessionWidget extends StatelessWidget {
     return QuestionType;
   }
 
-  build_question_widget(String Question, int id, int questionable_id,) {
-
-    return Question == "Question" || Question =="OrderQuestion"
-        ? build_question_type_widget(id: id, session: easySession ,customfunction:this.customfunction,marks:this.marks)
+  build_question_widget(
+    String Question,
+    int id,
+    int questionable_id,
+  ) {
+    return Question == "Question" || Question == "OrderQuestion"
+        ? build_question_type_widget(
+            id: id,
+            session: easySession,
+            customfunction: this.customfunction,
+            marks: this.marks)
         : build_java_question_widget(
-        questionable_id: questionable_id, session: easySession);
+            questionable_id: questionable_id, session: easySession);
   }
 }
-
-

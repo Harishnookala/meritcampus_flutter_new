@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meritcampus_flutter_new/sessions.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'MainDrawer.dart';
 import 'Topic_Widget.dart';
@@ -71,8 +72,7 @@ class MyApp_state extends State<App> {
                     style: TextStyle(color: Colors.white, fontSize: 23),
                   )),
                   //IconButton
-                  FlatButton(
-                      padding: const EdgeInsets.only(top: 2.6),
+                  TextButton(
                       onPressed: () {
                         Navigator.push(
                           context,

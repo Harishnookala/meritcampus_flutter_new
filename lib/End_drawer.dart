@@ -1,22 +1,30 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meritcampus_flutter_new/show_topics.dart';
+import 'package:meritcampus_flutter_new/topic_id.dart';
 import 'package:meritcampus_flutter_new/welcome.dart';
 import 'Topic_Widget.dart';
 import 'package:meritcampus_flutter_new/main.dart';
 
 import 'class_Models/PlanGroup.dart';
 import 'Api.dart';
+import 'class_Models/Topic.dart';
 
 class BuildDrawer extends StatefulWidget {
   String title;
   final int topic_Id;
-  BuildDrawer({this.topic_Id,this.title,  });
+  BuildDrawer({
+    this.topic_Id,
+    this.title,
+  });
 
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return BuildState(topic_Id: this.topic_Id,title:this.title,);
+    return BuildState(
+      topic_Id: this.topic_Id,
+      title: this.title,
+    );
   }
 }
 
@@ -26,7 +34,11 @@ class BuildState extends State<BuildDrawer> {
     print("Disposing second route");
     super.dispose();
   }
-  BuildState({this.topic_Id,this.title,});
+
+  BuildState({
+    this.topic_Id,
+    this.title,
+  });
   int topic_Id;
   String title;
   TopicWidgetState enter = new TopicWidgetState();
@@ -41,11 +53,9 @@ class BuildState extends State<BuildDrawer> {
   Widget build(BuildContext context) {
     List<PlanGroup> group = Api.loadGroups(context);
     // TODO: implement build
-    return new
-    MaterialApp(
-
+    return new MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:Container(
+        home: Container(
             alignment: Alignment.topLeft,
             margin: EdgeInsets.only(right: 1.3, bottom: 12.3),
             child: new ListView(
@@ -128,25 +138,30 @@ class BuildState extends State<BuildDrawer> {
   }
 
   buildSubList(int check, int index, List<PlanGroup> group) {
-    return InkWell(
-        child: Container(
-          margin: EdgeInsets.only(left: 12.3),
-          child: ListTile(
-            title: Text(
-              group[check].children[index].topicTitle,
-              style: TextStyle(fontSize: 17, color: Colors.blueAccent),
-              textAlign: TextAlign.left,
+    return Column(children: [
+      FlatButton(
+          child: Container(
+            margin: EdgeInsets.only(left: 12.3),
+            child: ListTile(
+              title: Text(
+                group[check].children[index].topicTitle,
+                style: TextStyle(fontSize: 17, color: Colors.blueAccent),
+                textAlign: TextAlign.left,
+              ),
             ),
           ),
-        ),
-        onTap: () {
-          id = group[check].children[index].topicId;
-         title = group[check].children[index].topicTitle;
-          Navigator.push(
-            context,
-            new MaterialPageRoute(builder: (context) => App(title:title)),
-          );       });
+          onPressed: ()  {
+            id = group[check].children[index].topicId;
+
+          })
+    ]);
   }
+
+
+   topic(int id) {
+
+  }
+
 }
 
 //---END OF DRAWER FILE-----------------

@@ -2,12 +2,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'Api.dart';
 import 'EasySessionWidget.dart';
 import 'class_Models/EasySession.dart';
-import 'main.dart';
 
 class show_topics extends StatefulWidget {
   final customfunction;
@@ -21,7 +19,6 @@ class show_topics extends StatefulWidget {
 }
 
 class show_topics_State extends State<show_topics> {
-
   String title;
   Future<List<EasySession>> easySessions;
   @override
@@ -35,8 +32,9 @@ class show_topics_State extends State<show_topics> {
           child: FutureBuilder<List<EasySession>>(
             future: easySessions,
             builder: (context, snapshot) {
+              print(snapshot.data);
               if (snapshot.hasData) {
-                return TopicsList(easySessions: snapshot.data,customfunction:this.customfunction,title:this.title);
+                return TopicsList(easySessions: snapshot.data,customfunction:this.customfunction);
               } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }
@@ -54,19 +52,55 @@ class TopicsList extends StatelessWidget {
   String title;
  final customfunction;
   TopicsList({this.easySessions,this.customfunction,this.title});
-
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+  ItemPositionsListener.create();
+  int updateValue;
+  int saved = 0;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder( //main list view for scrolling
-        itemCount: easySessions.length,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              EasySessionWidget(easySession: easySessions[index],customfunction: this.customfunction,title:this.title,session:easySessions)
-          ],
-          );
-        });
+    return Column(
+      children: [
+        Container(
+          height: 600,
+          child: ListView.builder(
+              physics: ScrollPhysics(),
+              itemCount: easySessions.length,
+              scrollDirection: Axis.vertical,
+              //itemScrollController: itemScrollController,
+              //itemPositionsListener: itemPositionsListener,
+              itemBuilder: (context, index) {
+                return Column(
+                  children: [
+                    EasySessionWidget(easySession: easySessions[index],customfunction: this.customfunction,session:easySessions)
+                  ],
+                );
+              }),
+        ),
+      ],
+    );
   }
+
+/*
+   positions_finding(ValueListenable<Iterable<ItemPosition>> itemPositions) {
+     int first_item = 0;
+     var positions = itemPositions.value;
+     if (positions.isNotEmpty) {
+       first_item = positions
+           .where((ItemPosition position) => position.itemTrailingEdge > 0)
+           .reduce((ItemPosition min, ItemPosition position) =>
+       position.itemTrailingEdge < min.itemTrailingEdge ? position : min)
+           .index;
+       print(first_item);
+       if (saved < first_item) {
+         saved = first_item;
+       }
+     }
+
+     return first_item;
+   }
+*/
 }
+
 
 
