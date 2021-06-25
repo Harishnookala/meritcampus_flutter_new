@@ -7,13 +7,13 @@ import 'login.dart';
 void main() => runApp(
     MaterialApp(
 
-      home: App(),
+      home: Login(),
         initialRoute: '/',
 
         routes: {
-
+          '/main_screen': (context) => Login(),
             // When navigating to the "/" route, build the FirstScreen widget.
-            '/main_screen': (context) => App(),
+          //  '/main_screen': (context) => App(),
             // When navigating to the "/second" route, build the SecondScreen widget.
         },
     )

@@ -60,6 +60,7 @@ flutter:
     - Images/drawer_icon.png
     - Images/mc_logo.png
     - Images/trophy_icon.png
+    - Images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

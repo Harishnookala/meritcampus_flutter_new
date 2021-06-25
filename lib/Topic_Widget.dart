@@ -62,20 +62,25 @@ class TopicsList extends StatelessWidget {
     return Column(
       children: [
         Container(
-          height: 600,
-          child: ListView.builder(
-              physics: ScrollPhysics(),
-              itemCount: easySessions.length,
-              scrollDirection: Axis.vertical,
-              //itemScrollController: itemScrollController,
-              //itemPositionsListener: itemPositionsListener,
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    EasySessionWidget(easySession: easySessions[index],customfunction: this.customfunction,session:easySessions)
-                  ],
-                );
-              }),
+          //height: 450,
+
+          child: Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+                physics: ScrollPhysics(),
+                itemCount: easySessions.length,
+                scrollDirection: Axis.vertical,
+                //itemScrollController: itemScrollController,
+                //itemPositionsListener: itemPositionsListener,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      
+                      EasySessionWidget(easySession: easySessions[index],customfunction: this.customfunction,session:easySessions)
+                    ],
+                  );
+                }),
+          ),
         ),
       ],
     );

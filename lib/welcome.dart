@@ -148,7 +148,7 @@ class MyApp_state extends State<App> {
                       title: title,
                     ),
                   ),
-                  Text("Hai")
+
                 ],
               )
               //margin: EdgeInsets.only(bottom: 12.3),

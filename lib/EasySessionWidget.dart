@@ -47,8 +47,8 @@ class EasySessionWidget extends StatelessWidget {
                       TopicWidget(
                         topicId: topic_id[index],
                         is_value: is_value,
-                      )
-                    else if (easySession.quiz_questions != null)
+                      ),
+                     if (easySession.quiz_questions != null)
                       Column(
                         children: Question_widget(easySession),
                       )

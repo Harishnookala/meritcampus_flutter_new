@@ -19,8 +19,8 @@ class LoginState extends State<Login> {
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("Images/login_background.jpg"),
-              fit: BoxFit.cover)),
+              image: AssetImage("Images/login_background_blur_2.jpg",),
+              )),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SizedBox(
@@ -67,7 +67,7 @@ class LoginState extends State<Login> {
     final response = await http.get(
         'https://java.meritcampus.com/users/register_and_generate_otp.json?mobile_number=$mobileNum');
     if (response.statusCode == 200) {
-      print("Hai");
+     // print("Hai");
       if (mobileNum.isNotEmpty) {
         Navigator.push(
             context,

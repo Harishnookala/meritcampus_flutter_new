@@ -21,7 +21,7 @@ class Otp extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(19.6),
             ),
-            Image.asset('Images/mc_android_log.png'),
+            Image.asset('Images/mc_logo.png'),
             TextFormField(
               controller: textfield_Otp,
               keyboardType: TextInputType.number,
@@ -59,7 +59,7 @@ class Otp extends StatelessWidget {
   Future<otp> Validate_Fetch_Data(BuildContext context, String otp_number) async {
     String otp_input = otp_number;
     final result = await http.get(
-        'http://java.meritcampus.com/users/validate_mobile_otp.json?mobile_number=$text &otp=$otp_input');
+        'https://java.meritcampus.com/users/validate_mobile_otp.json?mobile_number=$text &otp=$otp_input');
 
     var check = otp.fromJson(json.decode(result.body));
     if (result.statusCode == 200) {
