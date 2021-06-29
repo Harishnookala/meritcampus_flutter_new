@@ -6,9 +6,9 @@ import 'package:meritcampus_flutter_new/welcome.dart';
 import 'Topic_Widget.dart';
 import 'package:meritcampus_flutter_new/main.dart';
 
-import 'class_Models/PlanGroup.dart';
+import 'classmodels/PlanGroup.dart';
 import 'Api.dart';
-import 'class_Models/Topic.dart';
+import 'classmodels/Topic.dart';
 
 class BuildDrawer extends StatefulWidget {
   String title;

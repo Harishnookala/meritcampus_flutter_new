@@ -1,9 +1,10 @@
-import"package:flutter/material.dart";
+import 'package:meritcampus_flutter_new/classmodels/Topic.dart';
 import 'package:serializable/serializable.dart';
 
-import 'package:meritcampus_flutter_new/class_Models/JavaFullQuestion.dart';
-import 'package:meritcampus_flutter_new/class_Models/Question.dart';
-import 'package:meritcampus_flutter_new/class_Models/Topic.dart';
+import 'JavaFullQuestion.dart';
+import 'Question.dart';
+
+
 
 class WorkEntry extends Reflectable implements Serializable {
 

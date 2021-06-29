@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'class_Models/Compile.dart';
-import 'class_Models/PlanGroup.dart';
-import 'class_Models/EasySession.dart';
-import 'class_Models/ExampleProgram.dart';
-import 'class_Models/JavaFullQuestion.dart';
-import 'class_Models/Question.dart';
-import 'class_Models/Topic.dart';
-import 'class_Models/output.dart';
+import 'classmodels/Compile.dart';
+import 'classmodels/PlanGroup.dart';
+import 'classmodels/EasySession.dart';
+import 'classmodels/ExampleProgram.dart';
+import 'classmodels/JavaFullQuestion.dart';
+import 'classmodels/Question.dart';
+import 'classmodels/Topic.dart';
+import 'classmodels/output.dart';
 import 'inlink.dart';
 import 'package:http/http.dart' as http;
 

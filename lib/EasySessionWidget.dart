@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:meritcampus_flutter_new/wrappers.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'class_Models/EasySession.dart';
+import 'classmodels/EasySession.dart';
 import 'show_topics.dart';
 import 'QuestionWidget.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EasySessionWidget extends StatelessWidget {
   List<EasySession> session;

@@ -1,14 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
-import 'package:meritcampus_flutter_new/class_Models/WorkEntry.dart';
+import 'classmodels/WorkEntry.dart';
 import 'package:meritcampus_flutter_new/sessions.dart';
 import 'Basic_java_program.dart';
 import 'wrappers.dart';
 import 'Api.dart';
-import 'class_Models/Topic.dart';
+import 'classmodels/Topic.dart';
 import 'html_formatter.dart';
 import 'dart:ui';
 import 'package:responsive_widgets/responsive_widgets.dart';
@@ -62,10 +61,7 @@ class TopicWidgetState extends State<TopicWidget> {
   showTopic(Topic topic) {
     var controller = ScrollController();
 
-    List col = [];
-    List row = [];
-    String f;
-    String test;
+
     List<Widget> children = [];
     children.add(MCBlueHeading(heading: topic.title));
 

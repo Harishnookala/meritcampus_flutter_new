@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'package:meritcampus_flutter_new/class_Models/output.dart';
-import 'package:meritcampus_flutter_new/wrappers.dart';
+import 'classmodels/output.dart';
+import 'wrappers.dart';
 
 import 'Api.dart';
-import 'class_Models/ExampleProgram.dart';
-import 'class_Models/output.dart';
+import 'classmodels/ExampleProgram.dart';
 import 'html_formatter.dart';
 
 class JavaExampleProgram extends StatefulWidget {

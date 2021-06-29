@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meritcampus_flutter_new/wrappers.dart';
 
-import 'class_Models/Compile.dart';
+import 'classmodels/Compile.dart';
 import 'html_formatter.dart';
 
 class Results extends StatelessWidget {

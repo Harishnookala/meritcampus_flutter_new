@@ -1,7 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 
 import 'Api.dart';
-import 'class_Models/PlanGroup.dart';
+import 'classmodels/PlanGroup.dart';
 class Plan_topics {
   static var data = [
     {

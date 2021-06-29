@@ -6,8 +6,8 @@ import 'package:meritcampus_flutter_new/wrappers.dart';
 
 import 'Api.dart';
 import 'Results.dart';
-import 'class_Models/Compile.dart';
-import 'class_Models/JavaFullQuestion.dart';
+import 'classmodels/Compile.dart';
+import 'classmodels/JavaFullQuestion.dart';
 import 'html_formatter.dart';
 
 class try_java_question extends StatefulWidget {

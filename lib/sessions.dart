@@ -3,12 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meritcampus_flutter_new/welcome.dart';
 import 'End_drawer.dart';
-import 'class_Models/Topic.dart';
+import 'classmodels/Topic.dart';
 import 'wrappers.dart';
 
 import 'Api.dart';
-import 'class_Models/EasySession.dart';
-import 'class_Models/PlanGroup.dart';
+import 'classmodels/EasySession.dart';
+import 'classmodels/PlanGroup.dart';
 
 
 class Session extends StatefulWidget{
