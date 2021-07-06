@@ -25,21 +25,6 @@ class SignupState extends State<Signup> {
   var validate_mobile_number;
   Future<Login> response;
   TextEditingController textfield_Otp = TextEditingController();
-  @override
-  void initState() {
-    super.initState();
-    check_if_already_login();
-  }
-
-  Future<void> check_if_already_login() async {
-    prefsdata = await SharedPreferences.getInstance();
-    setState(() {
-      var token = prefsdata.getString('token');
-       if(token!=null){
-         App(token: token,);
-       }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,14 +43,13 @@ class SignupState extends State<Signup> {
           backgroundColor: Colors.transparent,
 
           body: Column(
-             //mainAxisAlignment: MainAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.center,
             children: [
-               Center(
-                 heightFactor: 1.9,
-                 child:Container(
-
-                     child: Image.asset("Images/mc_logo.png",alignment: Alignment.center,width: 90,))
-               ),
+              Center(
+                  heightFactor: 1.9,
+                  child:Container(
+                      child: Image.asset("Images/mc_logo.png",alignment: Alignment.center,width: 90,))
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -102,12 +86,12 @@ class SignupState extends State<Signup> {
           controller: mobile_number,
           keyboardType: TextInputType.phone,
           decoration: new InputDecoration(
-            hintStyle: TextStyle(color: Colors.lightBlue, fontSize: 19),
-            hintText: ' Enter your Phone number',
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.cyanAccent),
-            ),
-            contentPadding: EdgeInsets.only(left: 13)
+              hintStyle: TextStyle(color: Colors.lightBlue, fontSize: 19),
+              hintText: ' Enter your Phone number',
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.cyanAccent),
+              ),
+              contentPadding: EdgeInsets.only(left: 13)
           ),
           style: TextStyle(
               color: Colors.lime, fontSize: 21, fontWeight: FontWeight.w700),
@@ -129,7 +113,7 @@ class SignupState extends State<Signup> {
                 mobileNum = mobile_number.text;
                 bool value = validate_check();
                 if (value) {
-                   validate_token();
+                  validate_token();
                 }
               },
             ),
@@ -142,23 +126,23 @@ class SignupState extends State<Signup> {
   build_otp() {
     return Column(
         children: [
-           build_resend_button(),
-      Container(
-        child: TextFormField(
-          controller: textfield_Otp,
-          keyboardType: TextInputType.number,
-          style: TextStyle(
-              fontSize: 18, fontWeight: FontWeight.w700, color: Colors.lime),
-          decoration: new InputDecoration(
-            hintStyle: TextStyle(color: Colors.white),
-            hintText: ' Enter otp sent to your mobile number',
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.cyanAccent),
+          build_resend_button(),
+          Container(
+            child: TextFormField(
+              controller: textfield_Otp,
+              keyboardType: TextInputType.number,
+              style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.w700, color: Colors.lime),
+              decoration: new InputDecoration(
+                hintStyle: TextStyle(color: Colors.white),
+                hintText: ' Enter otp sent to your mobile number',
+                enabledBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.cyanAccent),
+                ),
+              ),
             ),
-          ),
-        ),
-      )
-    ]);
+          )
+        ]);
   }
 
   bool validate_check() {
@@ -166,12 +150,12 @@ class SignupState extends State<Signup> {
       count++;
       if (mobileNum.isNotEmpty) {
         pressed = true;
-         if(count==1){
-           Api.checking_mobie_number(mobileNum);
-         }
+        if(count==1){
+          Api.checking_mobie_number(mobileNum);
+        }
       }
       if (pressed) {
-         print(count);
+        print(count);
         pressed = true;
       }
     });
@@ -179,6 +163,7 @@ class SignupState extends State<Signup> {
   }
 
   void validate_token() async{
+    prefsdata = await SharedPreferences.getInstance();
     if (otpnumber.isNotEmpty) {
       Future<Login> future =
       Future(() => Api.validate_otp(otpnumber, mobileNum));
