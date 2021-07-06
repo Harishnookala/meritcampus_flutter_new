@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:meritcampus_flutter_new/try_java_question.dart';
-import 'classmodels/Compile.dart';
+import 'models/compile.dart';
 import 'wrappers.dart';
 
-import 'Api.dart';
-import 'classmodels/EasySession.dart';
-import 'classmodels/JavaFullQuestion.dart';
-import 'classmodels/Question.dart';
+import 'api.dart';
+import 'models/easysession.dart';
+import 'models/javafullquestion.dart';
+import 'models/question.dart';
 import 'html_formatter.dart';
 
 class build_question_type_widget extends StatefulWidget {

@@ -1,18 +1,18 @@
 class Compiler {
   Null javaQuestion;
   CompileStatus compileStatus;
-  CompileStatus testStatus;
+   CompileStatus testStatus;
 
-  Compiler({this.javaQuestion, this.compileStatus, this.testStatus});
+  Compiler({this.javaQuestion,  this.compileStatus,  this.testStatus});
 
   Compiler.fromJson(Map<String, dynamic> json) {
     javaQuestion = json['java_question'];
-    compileStatus = json['compile_status'] != null
+    compileStatus = (json['compile_status'] != null
         ? new CompileStatus.fromJson(json['compile_status'])
-        : null;
-    testStatus = json['test_status'] != null
+        : null);
+    testStatus = (json['test_status'] != null
         ? new CompileStatus.fromJson(json['test_status'])
-        : null;
+        : null);
   }
 
   Map<String, dynamic> toJson() {

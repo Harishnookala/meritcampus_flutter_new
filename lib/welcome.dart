@@ -1,26 +1,29 @@
 
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meritcampus_flutter_new/sessions.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import 'MainDrawer.dart';
-import 'Topic_Widget.dart';
+import 'maindrawer.dart';
+import 'topic_widget.dart';
 //------------welcome.dart---------
 
 class App extends StatefulWidget {
   String title;
-  App({this.title});
+  String token;
+  App({this.title,this.token});
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyApp_state(title: this.title);
+    return MyApp_state(title: this.title,token:this.token);
   }
 }
 
 class MyApp_state extends State<App> {
   String title;
-  MyApp_state({this.title});
+  String token;
+  MyApp_state({this.title,this.token});
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final GlobalKey<ScaffoldState> end_drawer = new GlobalKey<ScaffoldState>();
 
@@ -32,16 +35,18 @@ class MyApp_state extends State<App> {
   }
 
   _getCustomAppBar(context) {
+
     var talent_prize = 0;
     return PreferredSize(
-      preferredSize: Size.fromHeight(135),
+      preferredSize: Size.fromHeight(100),
       child: Container(
-        color: Colors.lightGreenAccent,
-        margin: const EdgeInsets.only(top: 12.3),
+        color: Colors.lightGreen,
+        //margin: const EdgeInsets.only(top: 12.3),
         child: Column(
           children: [
             Card(
-              color: Colors.lightGreenAccent,
+              margin: EdgeInsets.only(top: 12.3),
+              color: Colors.lightGreen,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -103,18 +108,18 @@ class MyApp_state extends State<App> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.43, //vam
+                  //width: MediaQuery.of(context).size.width * 0.43, //vam
                   child: Text(
                     'Talent Prize ₹' + talent_prize.toString().padRight(4, '0'),
-                    style: const TextStyle(color: Colors.white, fontSize: 19),
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.43,
+                  //width: MediaQuery.of(context).size.width * 0.43,
                   //  margin:EdgeInsets.only(: 12.6,),
                   child: const Text(
                     'Max ₹ 20 for free users.',
-                    style: const TextStyle(color: Colors.white, fontSize: 19),
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
                     //overflow: TextOverflow.ellipsis,
                     // textScaleFactor: 1.6,
                   ),
@@ -129,34 +134,40 @@ class MyApp_state extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return new MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: new Scaffold(
-          key: _scaffoldKey,
-          appBar: _getCustomAppBar(context),
-          drawer: Drawer(
-            child: MainDrawer(),
-          ),
-          body: Container(
-            child: ListView(children: [
-              Column(
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height*0.78,
-                    child: show_topics(
-                      customfunction: updatescore,
-                      title: title,
-                    ),
-                  ),
+        home: WillPopScope(
+          onWillPop: () {
+            return new Future(() => false);
+          },
+          child: Scaffold(
+            key: _scaffoldKey,
+            appBar: _getCustomAppBar(context),
+            drawer: Drawer(
+              child: MainDrawer(),
+            ),
+            body: Container(
+                child: Column(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          child: TopicWidget(
+                            customfunction: updatescore,
+                            title: title,
+                          ),
+                        ),
+                      ),
 
-                ],
-              )
-              //margin: EdgeInsets.only(bottom: 12.3),
-            ]),
-          )),
+                    ],
+                  )
+                  //margin: EdgeInsets.only(bottom: 12.3),
+
+              ),
+            ),
+        ));
 
       //body:Text('Hello topic screen'),
-    );
+
   }
 }
 

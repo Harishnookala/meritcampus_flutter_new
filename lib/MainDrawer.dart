@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'sessions.dart';
-import 'Topic_Widget.dart';
+import 'topic_widget.dart';
 import 'welcome.dart';
 
-import 'End_drawer.dart';
+import 'end_drawer.dart';
 class MainDrawer extends StatefulWidget {
   @override
   MainDrawerState createState() => MainDrawerState();
@@ -21,7 +21,7 @@ class MainDrawerState extends State<MainDrawer> {
         ),
         CustomTitle(Icons.score,'Score',()=> Navigator.push(
           context,
-          new MaterialPageRoute(builder: (context) =>  show_topics()),
+          new MaterialPageRoute(builder: (context) =>  TopicWidget()),
         ),
         ),
         CustomTitle(Icons.list,'Topics',()=> Navigator.push(
@@ -31,22 +31,22 @@ class MainDrawerState extends State<MainDrawer> {
         ),
         CustomTitle(Icons.share,'Share',()=> Navigator.push(
           context,
-          new MaterialPageRoute(builder: (context) => new show_topics()),
+          new MaterialPageRoute(builder: (context) => new TopicWidget()),
         ),
         ),
         CustomTitle(Icons.monetization_on,'Cash Back',()=> Navigator.push(
           context,
-          new MaterialPageRoute(builder: (context) => new show_topics()),
+          new MaterialPageRoute(builder: (context) => new TopicWidget()),
         ),
         ),
         CustomTitle(Icons.monetization_on,'Weekly Competition',()=> Navigator.push(
           context,
-          new MaterialPageRoute(builder: (context) => new show_topics()),
+          new MaterialPageRoute(builder: (context) => new TopicWidget()),
         ),
         ),
         CustomTitle(Icons.settings,'Settings',()=> Navigator.push(
           context,
-          new MaterialPageRoute(builder: (context) => new show_topics()),
+          new MaterialPageRoute(builder: (context) => new TopicWidget()),
         ),
         ),
 

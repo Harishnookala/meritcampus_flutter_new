@@ -2,28 +2,28 @@
 
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'Api.dart';
-import 'EasySessionWidget.dart';
-import 'classmodels/EasySession.dart';
+import 'api.dart';
+import 'easysessionwidget.dart';
+import 'models/easysession.dart';
 
-class show_topics extends StatefulWidget {
+class TopicWidget extends StatefulWidget {
   final customfunction;
   String title;
- show_topics({this.customfunction,this.title});
+  TopicWidget({this.customfunction,this.title});
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return show_topics_State(customfunction:this.customfunction,title:this.title);
+    return TopicWidgetState(customfunction:this.customfunction,title:this.title);
   }
 }
 
-class show_topics_State extends State<show_topics> {
+class TopicWidgetState extends State<TopicWidget> {
   String title;
   Future<List<EasySession>> easySessions;
   @override
  int marks;
   final customfunction;
- show_topics_State({this.customfunction,this.title});
+  TopicWidgetState({this.customfunction,this.title});
   Widget build(BuildContext context) {
     easySessions = Api.loadStudent(context);
     return Container(
@@ -74,7 +74,6 @@ class TopicsList extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      
                       EasySessionWidget(easySession: easySessions[index],customfunction: this.customfunction,session:easySessions)
                     ],
                   );

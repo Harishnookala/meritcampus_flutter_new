@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meritcampus_flutter_new/Api.dart';
-import 'package:meritcampus_flutter_new/End_drawer.dart';
+import 'package:meritcampus_flutter_new/api.dart';
+import 'package:meritcampus_flutter_new/end_drawer.dart';
 
-import 'classmodels/Topic.dart';
+import 'models/topic.dart';
 
 class Topic_id extends StatelessWidget{
   int id;

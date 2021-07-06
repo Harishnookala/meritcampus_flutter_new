@@ -4,10 +4,10 @@ import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart
 import 'package:meritcampus_flutter_new/wrappers.dart';
 
 
-import 'Api.dart';
-import 'Results.dart';
-import 'classmodels/Compile.dart';
-import 'classmodels/JavaFullQuestion.dart';
+import 'api.dart';
+import 'results.dart';
+import 'models/compile.dart';
+import 'models/javafullquestion.dart';
 import 'html_formatter.dart';
 
 class try_java_question extends StatefulWidget {
@@ -27,8 +27,8 @@ class try_java_question extends StatefulWidget {
 }
 
 class _try_java_questionState extends State<try_java_question> {
-  List caseList = new List();
-  List<Widget> showList = new List();
+  List caseList = [];
+  List<Widget> showList = [];
 
   JavaQuestion question;
   bool is_value;
@@ -162,7 +162,7 @@ class _try_java_questionState extends State<try_java_question> {
     return Container(
       alignment: Alignment.topLeft,
       child: FutureBuilder<Compiler>(
-        future: Api.get_data(question.id,conver_uri),
+        future: Api.get_values(question.id,conver_uri),
         builder: (context,snap){
          if(snap.hasData) {
           compile = snap.data;

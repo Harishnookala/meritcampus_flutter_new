@@ -2,13 +2,13 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:meritcampus_flutter_new/welcome.dart';
-import 'End_drawer.dart';
-import 'classmodels/Topic.dart';
+import 'end_drawer.dart';
+import 'models/topic.dart';
 import 'wrappers.dart';
 
-import 'Api.dart';
-import 'classmodels/EasySession.dart';
-import 'classmodels/PlanGroup.dart';
+import 'api.dart';
+import 'models/easysession.dart';
+import 'models/plangroup.dart';
 
 
 class Session extends StatefulWidget{
@@ -79,7 +79,7 @@ class SessionState extends State<Session> {
           ),
           ThinAmberHeading(heading: "Topics",),
           Expanded(
-            child:BuildDrawer(),
+            child:EndDrawer(),
           )
         ]),
       ),

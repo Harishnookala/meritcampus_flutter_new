@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:meritcampus_flutter_new/show_topics.dart';
 import 'package:meritcampus_flutter_new/topic_id.dart';
 import 'package:meritcampus_flutter_new/welcome.dart';
-import 'Topic_Widget.dart';
+import 'topic_widget.dart';
 import 'package:meritcampus_flutter_new/main.dart';
 
-import 'classmodels/PlanGroup.dart';
-import 'Api.dart';
-import 'classmodels/Topic.dart';
+import 'models/plangroup.dart';
+import 'api.dart';
+import 'models/topic.dart';
 
-class BuildDrawer extends StatefulWidget {
+class EndDrawer extends StatefulWidget {
   String title;
   final int topic_Id;
-  BuildDrawer({
+  EndDrawer({
     this.topic_Id,
     this.title,
   });
@@ -21,27 +21,26 @@ class BuildDrawer extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return BuildState(
+    return EndDrawerState(
       topic_Id: this.topic_Id,
       title: this.title,
     );
   }
 }
 
-class BuildState extends State<BuildDrawer> {
+class EndDrawerState extends State<EndDrawer> {
   @override
   void dispose() {
     print("Disposing second route");
     super.dispose();
   }
 
-  BuildState({
+  EndDrawerState({
     this.topic_Id,
     this.title,
   });
   int topic_Id;
   String title;
-  TopicWidgetState enter = new TopicWidgetState();
 
   bool pressed = false;
   int selectedTopic = 0;

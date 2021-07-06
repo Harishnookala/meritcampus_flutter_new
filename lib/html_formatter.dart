@@ -1,4 +1,4 @@
-import 'Api.dart';
+import 'api.dart';
 import 'inlink.dart';
 
 class HtmlFormatter {

@@ -1,8 +1,9 @@
-import 'package:meritcampus_flutter_new/classmodels/Topic.dart';
+/*
+import 'package:meritcampus_flutter_new/models/topic.dart';
 import 'package:serializable/serializable.dart';
 
-import 'JavaFullQuestion.dart';
-import 'Question.dart';
+import 'javafullquestion.dart';
+import 'question.dart';
 
 
 
@@ -14,7 +15,9 @@ class WorkEntry extends Reflectable implements Serializable {
   String entryType;
 
   @SerializedName("title")
-   String title;
+   String title;*/
+/**//*
+
 
   @SerializedName("entryId")
 
@@ -80,3 +83,4 @@ class WorkEntry extends Reflectable implements Serializable {
         '}';
   }
 }
+*/

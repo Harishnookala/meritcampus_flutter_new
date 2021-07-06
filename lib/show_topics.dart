@@ -2,30 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
-import 'classmodels/WorkEntry.dart';
+import 'models/workentry.dart';
 import 'package:meritcampus_flutter_new/sessions.dart';
-import 'Basic_java_program.dart';
+import 'basic_java_program.dart';
 import 'wrappers.dart';
-import 'Api.dart';
-import 'classmodels/Topic.dart';
+import 'api.dart';
+import 'models/topic.dart';
 import 'html_formatter.dart';
 import 'dart:ui';
 import 'package:responsive_widgets/responsive_widgets.dart';
 
-class TopicWidget extends StatefulWidget {
+class Showtopics extends StatefulWidget {
   final int topicId;
   bool is_value;
   String entry_type;
-  TopicWidget({this.topicId, this.is_value, this.entry_type});
+  Showtopics({this.topicId, this.is_value, this.entry_type});
 
   @override
-  TopicWidgetState createState() {
-    return TopicWidgetState(
+  ShowtopicsState createState() {
+    return ShowtopicsState(
         topicId: this.topicId, is_value: is_value, entry_type: this.entry_type);
   }
 }
 
-class TopicWidgetState extends State<TopicWidget> {
+class ShowtopicsState extends State<Showtopics> {
   List remaining_item = [];
   List main_header = [];
   final int topicId;
@@ -35,27 +35,26 @@ class TopicWidgetState extends State<TopicWidget> {
   String entry_type;
 
   Topic topics;
-  TopicWidgetState({this.topicId, this.is_value, this.entry_type});
+  ShowtopicsState({this.topicId, this.is_value, this.entry_type});
 
   @override
   Widget build(BuildContext context) {
-    WorkEntry entry = new WorkEntry();
-    entry =  createTopic(topicId);
-    print(entry);
-    return entry.entryType == "TOPIC" ? FutureBuilder<Topic>(
+
+
+    return  FutureBuilder<Topic>(
         future: Api.loadTopic(topicId),
         builder: (BuildContext context, snap) {
 
           if (snap.hasData) {
             Session(load_topic: snap.data);
             topics = snap.data;
-            print(entry_type);
+
             return showTopic(snap.data);
           } else if (snap.hasError) {
             return Text("hide");
           }
           return MCBlueHeading(heading: "Loading Awesome");
-        }):Container();
+        });
   }
 
   showTopic(Topic topic) {
@@ -455,12 +454,4 @@ class TopicWidgetState extends State<TopicWidget> {
     return tableHeaderNameCount;
   }
 
-   static WorkEntry createTopic(int topicId) {
-
-    WorkEntry entry = new WorkEntry();
-     entry.setTitle("Loading awesome");
-     entry.setEntryId(topicId);
-    entry.setEntryType("TOPIC");
-
-    return entry;
-  }}
+  }

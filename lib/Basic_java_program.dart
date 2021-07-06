@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
-import 'classmodels/output.dart';
+import 'models/output.dart';
 import 'wrappers.dart';
 
-import 'Api.dart';
-import 'classmodels/ExampleProgram.dart';
+import 'api.dart';
+import 'models/exampleprogram.dart';
 import 'html_formatter.dart';
 
 class JavaExampleProgram extends StatefulWidget {
@@ -217,8 +217,6 @@ class basic_program_state  extends State<basic_program> {
       ),
     );
   }
-
-
 
 }
 
