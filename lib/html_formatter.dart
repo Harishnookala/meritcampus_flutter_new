@@ -1,4 +1,4 @@
-import 'api.dart';
+import 'Api.dart';
 import 'inlink.dart';
 
 class HtmlFormatter {
@@ -68,14 +68,6 @@ class HtmlFormatter {
         input.contains(close(tag))) {
       String inlinkDetails = between(input, open(tag), close(tag));
       List inlinkDetailsTokens = inlinkDetails.split(":");
-//      String newString = PlanItem.TOPIC_NAMES.get(
-//          Integer.parseInt(inlinkDetailsTokens[0].trim()));
-//      if (inlinkDetailsTokens.length > 1) {
-//        newString = inlinkDetailsTokens[1];
-//      }
-//      if (!isValid(newString)) {
-//        newString = inlinkDetails;
-//      }
       List<String> newString = inlinkDetails.split(":");
 
       if(inlinkDetails.contains(":")){
@@ -186,7 +178,7 @@ class HtmlFormatter {
   }
 
   static List<String> split(String input) {
-    List<String> result = new List();
+    List<String> result = [];
     List<String> tags = ["image2", "table", "video2", INPROGRAM, "cl","case"];
     while (true) {
       bool found = false;

@@ -8,7 +8,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences prefs = await SharedPreferences.getInstance();
   var token = prefs.getString('token');
-  runApp(MaterialApp(home: token==null?Signup():App()));
+  runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: token==null?Signup():App()));
 
 }
 

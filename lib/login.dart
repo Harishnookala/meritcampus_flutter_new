@@ -17,14 +17,18 @@ class Signup extends StatefulWidget {
 class SignupState extends State<Signup> {
   SharedPreferences prefsdata;
   String login_token;
+  bool checking_error =false;
   var pressed = false;
   String otpnumber;
   TextEditingController mobile_number = TextEditingController();
   String mobileNum;
   int count = 0;
+  bool otp_invalid;
   var validate_mobile_number;
   Future<Login> response;
   TextEditingController textfield_Otp = TextEditingController();
+
+  var error;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,6 @@ class SignupState extends State<Signup> {
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
-                  heightFactor: 1.9,
                   child:Container(
                       child: Image.asset("Images/mc_logo.png",alignment: Alignment.center,width: 90,))
               ),
@@ -113,12 +116,23 @@ class SignupState extends State<Signup> {
                 mobileNum = mobile_number.text;
                 bool value = validate_check();
                 if (value) {
-                  validate_token();
+                  var idea = validate_token();
+                   error = await idea;
+                   if(error!=null){
+                     checking_error = true;
+                     return checking_error;
+                   }
                 }
               },
             ),
           ),
-        )
+        ),
+        checking_error?Center(
+            child: Container(
+              margin: EdgeInsets.only(top: 15),
+              child: Text("Otp is invalid",style: TextStyle(fontSize: 19,color: Colors.red),),
+            ),
+          ):Container()
       ],
     );
   }
@@ -162,7 +176,10 @@ class SignupState extends State<Signup> {
     return pressed;
   }
 
-  void validate_token() async{
+
+
+
+   validate_token() async{
     prefsdata = await SharedPreferences.getInstance();
     if (otpnumber.isNotEmpty) {
       Future<Login> future =
@@ -176,10 +193,8 @@ class SignupState extends State<Signup> {
           new MaterialPageRoute(builder: (context) => new App(token: login_token,)),
         );
       } else {
-        Navigator.push(
-          context,
-          new MaterialPageRoute(builder: (context) => new Signup()),
-        );
+         validate_mobile_number = "Otp is invalid";
+           return validate_mobile_number;
       }
     }
   }
