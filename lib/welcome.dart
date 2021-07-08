@@ -94,7 +94,7 @@ class MyApp_state extends State<App> {
                     child: IconButton(
                         onPressed: () =>
                             _scaffoldKey.currentState.openEndDrawer(),
-                        iconSize: 30,
+                        iconSize: 28,
                         icon: Icon(
                           Icons.share,
                           color: Colors.white,
